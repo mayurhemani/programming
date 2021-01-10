@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head><title>Simple Animation</title>
+	<style>
+		#thebox {
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			left: 100px;
+			top: 200px;
+			background-color: blue;
+			border-radius: 50px;
+		}
+	</style>
+	</head>
+	<body>
+		<div id="thebox">
+			HELLO
+		</div>
+		<script type="text/javascript">
+			var clk = null;
+			var r = 0, g = 0, b = 0;
+			var borderRadius = 0;
+			function move() {
+				let box = document.getElementById("thebox");
+				let xpos = box.offsetLeft;
+				if (xpos <= 500) {
+					xpos = xpos + 1;
+					box.style.backgroundColor = "rgb(" + r +"," + g+ "," + b +")";
+					r = (r + 10)%255;
+					g = (g + 20)%255;
+					b = (b + 30)%255;
+					box.style.borderRadius = borderRadius + "px";
+					borderRadius = (borderRadius + 1)%50;
+				} else {
+					clearInterval(clk);
+				}
+				box.style.left = xpos + "px";
+			}
+			clk = setInterval(move, 50);
+		</script>
+	</body>
+</html>
