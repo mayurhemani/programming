@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>The Maze Computer</title>
+		<style>
+			div {
+				margin: 0;
+				padding: 0;
+			}
+			.maze {
+				width: 800px;
+				height: 800px;
+				background-color: black;
+				position: absolute;
+			}
+
+			.block {
+				position: absolute;
+				width: 50px;
+				height: 50px;
+				background-color: gray;
+			}
+	
+			.bot {
+				position: absolute;
+				width: 25px;
+				height: 25px;
+				background-color: rgb(255, 64, 64);
+			}
+
+			.destination {
+				position: absolute;
+				width: 25px;
+				height: 25px;
+				background-color: rgb(64, 255, 64);
+			}
+
+		</style>
+	</head>
+	<body>
+		<div class="maze">
+		</div>
+		<script type="text/javascript" src="maze.js"></script>
+		<script type="text/javascript">
+		var clock = null;
+
+		// moveLeft, moveRight, moveUp, moveDown
+		// willCollide( dx, dy )
+		// dx => 0 (not moving in left-right), 1 (moving right), -1 (moving left)
+		// dy => 0 (not moving up-down), 1 (moving down), -1 (moving up)	
+		function plan( bot ) {
+			bot.moveRight()
+			bot.moveDown()
+		}	
+
+		var computer = new BotComputer(plan);
+		function move() {
+			let stepResult = computer.step();
+			if (stepResult == "yay") {
+				window.alert("you win");	
+				clearInterval(clock);
+			} else if (stepResult == "game-over") {
+				window.alert("you lose");
+				clearInterval(clock);
+			} 
+		}
+		clock = setInterval(move, 200);
+		</script>	
+	</body>
+</html>
