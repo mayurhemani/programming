@@ -26,28 +26,36 @@
 				box.style.top = ypos + "px";
 			}
 
+			var state = "not-pressing";
+			var ctr = 0;
+			var speed = 5;
+
 			function myKeyboardHandler(ev) {
+				ctr = ctr + 1;
+				if (state == "not-pressing") {
+					state = "pressing";
+			    } else if (state == "pressing" && ctr >= 10) {
+					state = "long-pressing";
+					speed = speed * 1.2;
+				} else if (state == "long-pressing") {
+				  	speed = speed * 1.2;
+				}
+
 				if (ev.key == "ArrowUp") {
-					move(0, -5);
+					move(0, -speed);
 				} else if (ev.key == "ArrowDown") {
-					move(0, 5);
+					move(0, speed);
 				} else if (ev.key == "ArrowLeft") {
-					move(-5, 0);
+					move(-speed, 0);
 				} else if (ev.key == "ArrowRight") {
-					move(5, 0);
+					move(speed, 0);
 				}
 			}
 
 			function myKeyUpHandler(ev) {
-				if (ev.key == "ArrowUp") {
-					console.log("You stopped pressing up arrow");
-				} else if (ev.key == "ArrowDown") {
-					console.log("You stopped pressing down arrow");
-				} else if (ev.key == "ArrowLeft") {
-					console.log("You stopped pressing left arrow");
-				} else if (ev.key == "ArrowRight") {
-					console.log("You stopped pressing right arrow");
-				}			
+				state = "not-pressing";
+				ctr = 0;
+				speed = 5;
 			}
 
 			window.addEventListener("keydown", myKeyboardHandler);
