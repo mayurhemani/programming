@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head><title>Simple Animation</title>
+	<style>
+		#thebox {
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			left: 100px;
+			top: 200px;
+			background-color: blue;
+			border-radius: 50px;
+		}
+	</style>
+	</head>
+	<body>
+		<div id="thebox"></div>
+		<script type="text/javascript">
+			function move(dx, dy) {
+				let box = document.getElementById("thebox");
+				let xpos = box.offsetLeft;
+				let ypos = box.offsetTop;
+				xpos = xpos + dx;
+				ypos = ypos + dy;
+				box.style.left = xpos + "px";
+				box.style.top = ypos + "px";
+			}
+
+			function myKeyboardHandler(ev) {
+				if (ev.key == "ArrowUp") {
+					console.log("Going up");
+					move(0, -5);
+				} else if (ev.key == "ArrowDown") {
+					console.log("Going down");
+					move(0, 5);
+				} else if (ev.key == "ArrowLeft") {
+					console.log("Going left");
+					move(-5, 0);
+				} else if (ev.key == "ArrowRight") {
+					console.log("Going right");
+					move(5, 0);
+				}
+			}
+
+			window.addEventListener("keydown", myKeyboardHandler);
+		</script>
+	</body>
+</html>
+	
