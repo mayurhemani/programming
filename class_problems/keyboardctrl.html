@@ -28,22 +28,30 @@
 
 			function myKeyboardHandler(ev) {
 				if (ev.key == "ArrowUp") {
-					console.log("Going up");
 					move(0, -5);
 				} else if (ev.key == "ArrowDown") {
-					console.log("Going down");
 					move(0, 5);
 				} else if (ev.key == "ArrowLeft") {
-					console.log("Going left");
 					move(-5, 0);
 				} else if (ev.key == "ArrowRight") {
-					console.log("Going right");
 					move(5, 0);
 				}
 			}
 
+			function myKeyUpHandler(ev) {
+				if (ev.key == "ArrowUp") {
+					console.log("You stopped pressing up arrow");
+				} else if (ev.key == "ArrowDown") {
+					console.log("You stopped pressing down arrow");
+				} else if (ev.key == "ArrowLeft") {
+					console.log("You stopped pressing left arrow");
+				} else if (ev.key == "ArrowRight") {
+					console.log("You stopped pressing right arrow");
+				}			
+			}
+
 			window.addEventListener("keydown", myKeyboardHandler);
+			window.addEventListener("keyup", myKeyUpHandler);
 		</script>
 	</body>
 </html>
-	
