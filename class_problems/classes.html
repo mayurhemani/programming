@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>This is about Classes</title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			class Apple {
+				constructor(variety, givenName) {
+					this.variety = variety;
+					this.name = givenName;
+				}
+				showMeTheName() {
+					console.log(this.name);
+				}
+			};
+
+			let anApple = new Apple("Washington Apple", "My least favorite apple");
+			let anotherApple = new Apple("Granny Smith", "My favorite apple");
+			let yetAnotherApple = new Apple("Golden Delicious", "apple no. 2");
+			let blahblahApple = new Apple("Fuji Apple", "apple no. 3");
+
+
+			anApple.showMeTheName();
+			anotherApple.showMeTheName();
+
+
+
+		</script>
+
+
+	</body>
+</html>
