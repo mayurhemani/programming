@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			.particle {
+				position: absolute;
+				left: 400px;
+				top: 400px;
+				width: 20px;
+				height: 20px;
+				border-radius: 10px;
+			}
+			body {
+				background-color: black;
+			}
+		</style>
+	</head>
+	<body>
+	<script type="text/javascript">
+		function getFireColor() {
+			let r = 150 + parseInt(Math.random() * 105);
+			let g = 50 + parseInt(Math.random() * 105);
+			let b = parseInt(Math.random() * 105);
+			return "rgb(" + r + "," + g + "," + b + ")";
+		}
+
+		function parseColor( obj ) {
+			var clrs = obj.style.backgroundColor.split("(")[1].split(",");
+			let r = parseInt(clrs[0]);
+			let g = parseInt(clrs[1]);
+			let b = parseInt(clrs[2]);
+			let a = 1;
+			if (clrs.length > 3) {
+				a = parseFloat(clrs[3]);
+			} 
+			return {red: r, green: g, blue: b, alpha: a };
+		}
+		
+		function createParticle() {
+			let d = document.createElement("div");
+			d.classList.add("particle");
+			d.style.backgroundColor = getFireColor();
+			document.body.appendChild(d);
+		}
+
+		
+		function moveParticle(particle) {
+			// move randomly upwards
+			let x = particle.offsetLeft;
+			let y = particle.offsetTop;
+
+			x += (Math.random() - 0.5) * 5;
+			y -= Math.random() * 4;
+
+			particle.style.left = x + "px";
+			particle.style.top = y + "px";
+
+			// also change the color a bit - make it lighter
+			let currentColor = parseColor( particle );
+			currentColor.red = Math.min(255, currentColor.red + 10);
+			currentColor.green = Math.min(255, currentColor.green + 5);
+			currentColor.alpha = Math.max(0, currentColor.alpha - 0.01);
+
+			particle.style.backgroundColor = "rgba(" + currentColor.red + "," + currentColor.green + "," + currentColor.blue + "," + currentColor.alpha + ")";
+		}
+
+		function checkAndDestroy(particle) {
+			if (particle.offsetTop < 10) {
+				particle.remove();
+			}
+		}
+
+		
+		function runParticleSystem() {
+			if (Math.random() <= 0.95) {
+				createParticle();
+				createParticle();
+			}
+			document.querySelectorAll(".particle").forEach( moveParticle );
+			document.querySelectorAll(".particle").forEach( checkAndDestroy );
+		}
+
+
+		var clock = setInterval( runParticleSystem, 50 );
+
+	</script>
+	</body>
+</html>
