@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			.ball {
+				width: 20px;
+				height: 20px;
+				border-radius: 50px;
+				position: absolute;
+				background-size: 100% 100%;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			class Ball {
+				constructor(x, y, color) {
+					let d = document.createElement("div");
+					document.body.appendChild(d);
+					d.classList.add( "ball" );
+					d.style.left = x + "px";
+					d.style.top = y + "px";
+					this.element = d;
+					if (!!(color)) {
+						this.element.style.backgroundColor = color;
+					}
+				}
+
+				move( dx, dy ) {
+					let x = this.element.offsetLeft;
+					let y = this.element.offsetTop;
+					x = x + dx;
+					y = y + dy;
+					this.element.style.left = x + "px";
+					this.element.style.top = y + "px";
+				}
+
+
+				moveTo( x, y ){
+					this.element.style.left = x + "px";
+					this.element.style.top = y + "px";
+				}
+
+				moveByAngle( alpha, cx, cy ) {
+					let x = this.element.offsetLeft;
+					let y = this.element.offsetTop;
+
+					let h = (x - cx) * Math.cos(alpha) - (y - cy) * Math.sin(alpha) + cx;
+					let k = (x - cx) * Math.sin(alpha) + (y - cy) * Math.cos(alpha) + cy;
+
+					this.element.style.left = h + "px";
+					this.element.style.top = k + "px";
+				}
+
+			};
+
+		
+			var cx = 500;
+			var cy = 400;
+
+			/*
+			function moveBallInCircle() {
+				srcBall.moveByAngle( -0.1, 500, 400 ); 
+			}*/
+
+			var srcBall2 = new Ball(300, 200, "rgb(200,10,10)");
+			var srcBall = new Ball(300, 130, "rgb(200,100,10)");
+			var srcBall3 = new Ball(300, 60, "rgb(200,200,10)");
+
+			setInterval( () => {
+				srcBall.moveByAngle( -0.1, cx, cy ); 
+				srcBall2.moveByAngle(-0.1, cx, cy);
+				srcBall3.moveByAngle(-0.1, cx, cy);
+			}, 100 );
+
+
+
+
+
+			
+
+		</script>
+	</body>
+</html>
