@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			.box {
+				position: absolute;
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<script type="text/javascript">
+			
+		class Box {
+			constructor( x, y, w, h, color ) {
+				this.elem = document.createElement("div");
+				this.elem.classList.add("box");
+				document.body.appendChild(this.elem);
+				this.elem.style.width = w + "px";
+				this.elem.style.height = h + "px";
+				this.elem.style.left = x + "px";
+				this.elem.style.top = y + "px";
+				this.elem.style.backgroundColor = color;
+			}
+			
+			
+			getX() {
+				return this.elem.offsetLeft;
+			}
+			getY() {
+				return this.elem.offsetTop;
+			}
+			getWidth() {
+				return this.elem.offsetWidth;
+			}
+			getHeight() {
+				return this.elem.offsetHeight;
+			}
+
+			setX(x) {
+				this.elem.style.left = x + "px";
+			}
+			setY(y) {
+				this.elem.style.top = y + "px";
+			}
+			setWidth(w) {
+				this.elem.style.width = w + "px";
+			}
+			setHeight(h) {
+				this.elem.style.height = h + "px";
+			}
+		};
+
+		class BoxState {
+			constructor(x, y, w, h) {
+				this.x = x;
+				this.y = y;
+				this.w = w;
+				this.h = h;
+			}
+		};
+	
+		let b = new Box( 100, 100, 200, 200, "red" );
+
+		var clk = null;
+
+
+		function lerp(t, v0, v1) {
+			return (1. - t) * v0 + t * v1;
+		}
+
+
+		var stateAtTimeEq0 = new BoxState(b.getX(), b.getY(), b.getWidth(), b.getHeight());
+		var stateAtTimeEq1 = new BoxState(1000, 400, 200, 10);
+		var t = 0;
+		var dt = 0.01;
+	
+		function animate() {	
+		
+			let newX = lerp(t, stateAtTimeEq0.x, stateAtTimeEq1.x);
+			let newY = lerp(t, stateAtTimeEq0.y, stateAtTimeEq1.y);
+			let newW = lerp(t, stateAtTimeEq0.w, stateAtTimeEq1.w);
+			let newH = lerp(t, stateAtTimeEq0.h, stateAtTimeEq1.h);
+
+			b.setX(newX);
+			b.setY(newY);
+			b.setWidth(newW);
+			b.setHeight(newH);
+
+			t = t + dt;
+
+			if (t >= 1.0) {
+				clearInterval(clk);
+			}
+		}
+
+
+		clk = setInterval(animate, 30);
+
+	
+
+		</script>
+	</body>
+</html>
