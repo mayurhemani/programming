@@ -1,0 +1,35 @@
+.stage {
+	width: 1024px;
+	height: 768px;
+	background-color: white;
+	position: absolute;
+	left: 20%;
+	top: 5%;
+	border: 1px solid black;
+	overflow: hidden;
+}
+
+
+.stage-image {
+	position: absolute;
+}
+
+.hidden-stage-item {
+	display: none;
+}
+
+#clouds {
+	left: 1%;
+	top: 1%;
+	width: 100%;
+}
+
+#trees {
+	left: 0%;
+	top: 10%;
+	width: 100%;
+}
+
+#sun {
+	left: 80%;
+}
