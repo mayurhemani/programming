@@ -5,6 +5,10 @@ Welcome to the home-page for the programming course.
 This course aims to share my joy in programming computers with kids and adults. It cannot be seen as a course that will land you a job, or get you started on a new business. It will, hopefully, open up new vistas for exploring and satisfying your curiosity, by giving you the right set of eyes for doing so. My mission with this course is to give back some part of what I’ve received over the years from my teachers.
 
 
+### 
+![Image of Camel in Desert](https://github.com/mayurhemani/programming/raw/master/class_problems/course_image.png)
+
+
 ### Tentative topics
 #### Foundations:
 Systems Track:
